@@ -25,7 +25,7 @@
     teleportPanel.id = "teleport-panel";
     teleportPanel.style.cssText = `
             position: fixed;
-            top: 50px;
+            top: 80px;
             left: 10px;
             z-index: 10000;
             background-color: rgba(0, 0, 0, 0.7);
@@ -44,7 +44,7 @@
     saveButton.innerHTML = "💾 Salvar Local Atual";
     saveButton.style.cssText = `
             position: fixed;
-            top: 10px;
+            top: 40px;
             left: 10px;
             z-index: 10001;
             background-color: #4CAF50;
