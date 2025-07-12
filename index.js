@@ -69,7 +69,6 @@
         savedLocations.push(newLocation);
         saveToLocalStorage();
         renderLocationButtons();
-        alert(`Localização "${locationName}" salva!`);
       }
     };
     document.body.appendChild(saveButton);
