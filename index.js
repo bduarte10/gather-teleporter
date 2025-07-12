@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  // Aguarda o objeto 'game' do Gather Town estar disponível
   const waitForGame = setInterval(() => {
     if (window.game && window.game.getMyPlayer) {
       clearInterval(waitForGame);
@@ -13,19 +12,14 @@
   let teleportPanel;
 
   function main() {
-    // Carrega localizações salvas do localStorage
     savedLocations =
       JSON.parse(localStorage.getItem("gatherTeleportLocations_v2")) || [];
 
-    // Cria o painel principal
     createPanel();
-    // Cria o botão de salvar localização
     createSaveButton();
-    // Renderiza a lista inicial de locais
     renderLocationButtons();
   }
 
-  // Função para criar o painel onde os botões ficarão
   function createPanel() {
     teleportPanel = document.createElement("div");
     teleportPanel.id = "teleport-panel";
@@ -45,7 +39,6 @@
     document.body.appendChild(teleportPanel);
   }
 
-  // Função para criar o botão de "Salvar Local Atual"
   function createSaveButton() {
     const saveButton = document.createElement("button");
     saveButton.innerHTML = "💾 Salvar Local Atual";
@@ -82,9 +75,8 @@
     document.body.appendChild(saveButton);
   }
 
-  // Função para renderizar os botões de teletransporte no painel
   function renderLocationButtons() {
-    teleportPanel.innerHTML = ""; // Limpa o painel
+    teleportPanel.innerHTML = "";
 
     if (savedLocations.length === 0) {
       teleportPanel.innerHTML =
@@ -100,7 +92,6 @@
                 margin-bottom: 5px;
             `;
 
-      // Botão de Teletransporte
       const tpButton = document.createElement("button");
       tpButton.innerText = loc.name;
       tpButton.title = `Mapa: ${loc.map} | X: ${loc.x}, Y: ${loc.y}`;
@@ -121,7 +112,6 @@
         window.game.teleport(loc.map, loc.x, loc.y);
       };
 
-      // Botão de Deletar
       const delButton = document.createElement("button");
       delButton.innerText = "❌";
       delButton.style.cssText = `
@@ -133,7 +123,7 @@
                 cursor: pointer;
             `;
       delButton.onclick = (e) => {
-        e.stopPropagation(); // Impede que o clique no X acione o teletransporte se estivessem aninhados
+        e.stopPropagation();
         if (confirm(`Tem certeza que deseja deletar "${loc.name}"?`)) {
           deleteLocation(index);
         }
@@ -145,14 +135,12 @@
     });
   }
 
-  // Função para deletar uma localização
   function deleteLocation(index) {
     savedLocations.splice(index, 1);
     saveToLocalStorage();
     renderLocationButtons();
   }
 
-  // Função para salvar no localStorage
   function saveToLocalStorage() {
     localStorage.setItem(
       "gatherTeleportLocations_v2",
