@@ -112,7 +112,7 @@
       };
 
       const delButton = document.createElement("button");
-      delButton.innerText = "❌";
+      delButton.innerText = "X";
       delButton.style.cssText = `
                 background-color: #f44336;
                 color: white;
@@ -120,12 +120,11 @@
                 padding: 6px 8px;
                 border-radius: 0 4px 4px 0;
                 cursor: pointer;
+                width: 30px;
             `;
       delButton.onclick = (e) => {
         e.stopPropagation();
-        if (confirm(`Tem certeza que deseja deletar "${loc.name}"?`)) {
-          deleteLocation(index);
-        }
+        deleteLocation(index);
       };
 
       locationContainer.appendChild(tpButton);
